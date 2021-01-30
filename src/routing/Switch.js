@@ -1,14 +1,15 @@
 import {Route, Switch} from "react-router-dom";
-import CrudContainer from "../components/core/CrudContainer";
+import CategoryPage from "../components/category/CategoryPage";
+import BannerPage from "../components/banner/BannerPage";
 
 export default function RouteSwitch() {
     return (
         <Switch>
             <Route path="/banners">
-
+                <BannerPage/>
             </Route>
             <Route path="/categories">
-                <CrudContainer title="Categories"/>
+                <CategoryPage/>
             </Route>
         </Switch>
     )

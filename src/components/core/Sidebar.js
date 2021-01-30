@@ -1,29 +1,57 @@
 import {Button, Form} from 'react-bootstrap';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import SearchItem from "./SearchItem";
+import CrudApi from "../../api/CrudApi";
+import styles from "../../css/Sidebar.module.css"
 
 export default function Sidebar(props) {
-    const [searchTemplate, setSearchTemplate] = useState("");
-    const [searchResults, setSearchResults] = useState([{id: 1, title: "hello"}]);
-    console.log(searchResults)
+    const [searchResults, setSearchResults] = useState([]);
+    const [template, setTemplate] = useState("");
+
+    useEffect(() => {
+        if (!(props.api instanceof CrudApi)) {
+            return
+        }
+        props.api
+            .search(template)
+            .then(res => {
+                setSearchResults(res.data)
+            })
+            .catch(err =>
+                alert(err)
+            )
+    }, [template, props.refresh])
+
     return (
-        <div className={props.className}>
-            <h5>
-                {props.title}
-            </h5>
-            <Form onChange={e => setSearchTemplate(e.target.value)}>
-                <Form.Group controlId="email">
-                    <Form.Control placeholder="Enter name..."/>
-                </Form.Group>
-                {
-                    searchResults.map(
-                        r => (
-                            <SearchItem
-                                id={r.id}
-                                title={r.title}/>
-                        ))
-                }
-            </Form>
+        <div className={styles.container}>
+            <div>
+                <h5>
+                    {props.title}
+                </h5>
+                <Form className={styles.input}
+                      onChange={e => setTemplate(e.target.value)}>
+                    <Form.Group controlId="email">
+                        <Form.Control placeholder="Enter name..."/>
+                    </Form.Group>
+                </Form>
+                <div className={styles.list}>
+                    {
+                        searchResults.map(
+                            r => (
+                                <SearchItem
+                                    id={r.id}
+                                    title={r.name}
+                                    onClick={() => props.onEntityClick(r.id)}
+                                />
+                            ))
+                    }
+                </div>
+            </div>
+            <Button
+                variant="primary"
+                onClick={props.onEntityCreate}>
+                Create new
+            </Button>
         </div>
     )
 }

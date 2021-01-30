@@ -6,4 +6,4 @@ class CategoryApi extends CrudApi {
     }
 }
 
-export const categoryApi = CategoryApi()
+export const categoryApi = new CategoryApi()

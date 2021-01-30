@@ -9,6 +9,10 @@ export default class CrudApi {
         return AXIOS.get(`${this.prefix}/${id}`)
     }
 
+    delete(id) {
+        return AXIOS.delete(`${this.prefix}/${id}`)
+    }
+
     search(template) {
         return AXIOS.get(`${this.prefix}/search`, {
             params: {

@@ -1,16 +1,39 @@
-import {Button} from 'react-bootstrap';
-import {useState} from "react";
+import {Button, Form} from 'react-bootstrap';
 
 export default function DetailsContainer(props) {
-    const [searchTemplate, setSearchTemplate] = useState("");
-    const [searchResults, setSearchResults] = useState([{id: 1, title: "hello"}]);
-    console.log(searchResults)
-
     const saveEntity = () => {
+        // TODO
+        props.api
+            .save(props.entity)
+            .then(response => {
+                alert("Saved")
+            })
+            .catch(error => {
+                alert(error)
+            })
+        props.refresh()
     }
     const updateEntity = () => {
+        props.api
+            .update(props.entity)
+            .then(response => {
+                // alert("Updated")
+            })
+            .catch(error => {
+                alert(error)
+            })
+        props.refresh()
     }
     const deleteEntity = () => {
+        props.api
+            .delete(props.entity.id)
+            .then(response => {
+                alert("Deleted")
+            })
+            .catch(error => {
+                alert(error)
+            })
+        props.refresh()
     }
 
     return (
@@ -18,7 +41,11 @@ export default function DetailsContainer(props) {
             <h5>
                 {props.title}
             </h5>
-            {props.children}
+            <Form onChange={e => props.onFormUpdate({
+                [e.target.id]: e.target.value
+            })}>
+                {props.children}
+            </Form>
             <Button
                 variant="success"
                 onClick={() => {

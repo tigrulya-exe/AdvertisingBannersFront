@@ -1,14 +1,10 @@
 import {Button} from "react-bootstrap";
-import { useLocation, useHistory } from 'react-router-dom'
 
-    export default function SearchItem(props) {
-    const location = useLocation();
-    const history = useHistory();
-
+export default function SearchItem(props) {
     return (
         <Button
             variant="light"
-            onClick={() => history.push(`${location.pathname}/${props.id}`)}
+            onClick={props.onClick}
         >
             {props.title}
         </Button>

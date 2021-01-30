@@ -1,14 +1,10 @@
 .container {
     display: flex;
     flex-direction: row;
+    height: 85vh;
 }
 
 .detailsContainer {
     width: 75%;
-    margin: 15px;
-}
-
-.sidebar {
-    width: 25%;
     margin: 15px;
 }

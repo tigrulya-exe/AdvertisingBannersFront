@@ -15,4 +15,4 @@ class BannerApi extends CrudApi {
     }
 }
 
-export const bannerApi = BannerApi()
+export const bannerApi = new BannerApi()
