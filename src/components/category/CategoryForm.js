@@ -1,26 +1,19 @@
-import {Form} from "react-bootstrap";
-import {useEffect} from "react";
-import {useIsMount} from "../../util/useIsMount";
+import {useIsMount} from "../../util/util";
+import FormField from "../core/FormField";
 
 export default function CategoryForm(props) {
-    const entity = props.entity;
     const isMount = useIsMount()
 
-    useEffect(() => {
-        if (!isMount) {
-            console.log("jjjjjj");
-            entity.name = "";
-            entity.requestName = "";
-        }
-    }, [props.refresh])
+    // useEffect(() => {
+    //     if (!isMount) {
+    //         entity.name = "";
+    //         entity.requestName = "";
+    //     }
+    // }, [props.refresh])
     return (
         <>
-            <Form.Group controlId="name">
-                <Form.Control value={entity?.name} placeholder="Name"/>
-            </Form.Group>
-            <Form.Group controlId="requestName">
-                <Form.Control value={entity?.requestName} placeholder="Request name"/>
-            </Form.Group>
+            <FormField controlId="name" value={props.entity?.name} placeHolder="Name"/>
+            <FormField controlId="requestName" value={props.entity?.requestName} placeHolder="Request name"/>
         </>
     )
 }

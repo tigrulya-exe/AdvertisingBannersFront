@@ -6,4 +6,14 @@ export const useIsMount = () => {
         isMountRef.current = false;
     }, []);
     return isMountRef.current;
-}
+};
+
+export const flushFields = (obj) => {
+    const newObj = {};
+    Object.getOwnPropertyNames(obj).forEach(v => {
+        if (v !== "id"){
+            newObj[v] = ""
+        }
+    });
+    return newObj;
+};

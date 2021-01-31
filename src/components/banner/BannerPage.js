@@ -1,12 +1,13 @@
-import CrudContainer from "../core/CrudContainer";
+import EntityPage from "../core/EntityPage";
 import {bannerApi} from "../../api/BannerApi";
+import BannerForm from "./BannerForm";
 
 export default function BannerPage() {
     return (
-        <CrudContainer
+        <EntityPage
             api={bannerApi}
             title={"Banners"}
-        >
-        </CrudContainer>
+            formFields={BannerForm}
+        />
     )
 }

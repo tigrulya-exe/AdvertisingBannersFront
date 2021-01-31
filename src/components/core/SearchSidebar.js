@@ -1,12 +1,22 @@
 import {Button, Form} from 'react-bootstrap';
 import {useEffect, useState} from "react";
-import SearchItem from "./SearchItem";
+import SearchListElement from "./SearchListElement";
 import CrudApi from "../../api/CrudApi";
-import styles from "../../css/Sidebar.module.css"
+import styles from "../../css/SearchSidebar.module.css"
 
-export default function Sidebar(props) {
+export default function SearchSidebar(props) {
     const [searchResults, setSearchResults] = useState([]);
     const [template, setTemplate] = useState("");
+
+    const mapSearchResults = () => searchResults.map(
+        r => (
+            <SearchListElement
+                id={r.id}
+                title={r.name}
+                onClick={() => props.onEntityClick && props.onEntityClick(r.id)}
+            />
+        )
+    )
 
     useEffect(() => {
         if (!(props.api instanceof CrudApi)) {
@@ -28,23 +38,13 @@ export default function Sidebar(props) {
                 <h5>
                     {props.title}
                 </h5>
-                <Form className={styles.input}
-                      onChange={e => setTemplate(e.target.value)}>
-                    <Form.Group controlId="email">
+                <Form onChange={e => setTemplate(e.target.value)}>
+                    <Form.Group controlId="search">
                         <Form.Control placeholder="Enter name..."/>
                     </Form.Group>
                 </Form>
                 <div className={styles.list}>
-                    {
-                        searchResults.map(
-                            r => (
-                                <SearchItem
-                                    id={r.id}
-                                    title={r.name}
-                                    onClick={() => props.onEntityClick(r.id)}
-                                />
-                            ))
-                    }
+                    {mapSearchResults()}
                 </div>
             </div>
             <Button
