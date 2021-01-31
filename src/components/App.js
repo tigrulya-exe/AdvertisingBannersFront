@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/App.css';
+import '../css/App.module.css';
 import {Router} from 'react-router-dom';
 import history from "../routing/History";
 import NavBar from "./core/NavBar";

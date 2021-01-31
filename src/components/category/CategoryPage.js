@@ -1,4 +1,4 @@
-import EntityPage from "../core/EntityPage";
+import {EntityPage} from "../core/EntityPage";
 import {categoryApi} from "../../api/CategoryApi";
 import CategoryForm from "./CategoryForm";
 

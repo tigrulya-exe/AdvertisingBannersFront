@@ -9,6 +9,10 @@ export const useIsMount = () => {
 };
 
 export const flushFields = (obj) => {
+    if (!obj){
+        return null
+    }
+
     const newObj = {};
     Object.getOwnPropertyNames(obj).forEach(v => {
         if (v !== "id"){

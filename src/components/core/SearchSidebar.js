@@ -38,6 +38,7 @@ export default function SearchSidebar(props) {
                 <h5>
                     {props.title}
                 </h5>
+                <hr/>
                 <Form onChange={e => setTemplate(e.target.value)}>
                     <Form.Group controlId="search">
                         <Form.Control placeholder="Enter name..."/>

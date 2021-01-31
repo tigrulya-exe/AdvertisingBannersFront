@@ -12,9 +12,10 @@ export default function BannerForm(props) {
 
     return (
         <>
-            <FormField controlId="name" value={props.entity?.name} placeHolder="Name"/>
-            <FormField controlId="price" value={props.entity?.price} placeHolder="Price"/>
+            <FormField controlId="name" value={props.entity?.name} label="Name"/>
+            <FormField controlId="price" value={props.entity?.price} label="Price"/>
             <Form.Group controlId="categoryId">
+                <Form.Label>Category</Form.Label>
                 <Form.Control as="select" value={props.entity?.categoryId}>
                     {
                         categories?.map(c => <option value={c.id}>{c.name}</option>)
@@ -22,7 +23,8 @@ export default function BannerForm(props) {
                 </Form.Control>
             </Form.Group>
             <Form.Group controlId="content">
-                <Form.Control as="textarea" value={props.entity?.content} placeholder="Content"/>
+                <Form.Label>Text</Form.Label>
+                <Form.Control as="textarea" value={props.entity?.content}/>
             </Form.Group>
         </>
     )

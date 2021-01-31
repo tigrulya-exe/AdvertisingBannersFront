@@ -3,8 +3,9 @@ import SearchSidebar from "./SearchSidebar";
 import EntityForm, {Action} from "./EntityForm";
 import {useState} from "react";
 import {flushFields} from "../../util/util";
+import wrapWithAlert from "./AlertWrappedComponent";
 
-export default function EntityPage(props) {
+function UnwrappedEntityPage(props) {
     const [action, setAction] = useState(Action.CREATE);
     const [entity, setEntity] = useState(null);
     const [refresh, setRefresh] = useState(false);
@@ -34,21 +35,25 @@ export default function EntityPage(props) {
     return (
         <div className={styles.container}>
             <SearchSidebar
-                title={props.title}
-                api={props.api}
                 refresh={refresh}
                 onEntityClick={getEntity}
                 onEntityCreate={onEntityCreate}
+                {...props}
             />
             <EntityForm
                 action={action}
-                api={props.api}
                 onFormUpdate={mergeEntity}
-                refresh={() => setRefresh(!refresh)}
                 entity={entity}
+                {...props}
+                onSuccess={(message) => {
+                    props.onSuccess(message)
+                    setRefresh(!refresh)
+                }}
             >
                 <FormFields entity={entity} refresh={refresh}/>
             </EntityForm>
         </div>
     )
 }
+
+export const EntityPage = wrapWithAlert(UnwrappedEntityPage)

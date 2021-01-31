@@ -1,4 +1,4 @@
-import EntityPage from "../core/EntityPage";
+import {EntityPage} from "../core/EntityPage";
 import {bannerApi} from "../../api/BannerApi";
 import BannerForm from "./BannerForm";
 
