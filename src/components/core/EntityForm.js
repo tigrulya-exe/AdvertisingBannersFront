@@ -1,12 +1,12 @@
 import styles from "../../css/EntityForm.module.css"
 import {Button, Form} from 'react-bootstrap';
-import {getErr} from "../../util/util";
+import {getError} from "../../util/util";
 
 export default function EntityForm(props) {
     const handlePromise = (promise, message) => {
         promise.then(res => props.onSuccess(message))
             .catch(err => {
-                props.onError(getErr(err))
+                props.onError(getError(err))
             })
     };
 

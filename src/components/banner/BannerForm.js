@@ -24,7 +24,7 @@ export default function BannerForm(props) {
             </Form.Group>
             <Form.Group controlId="content">
                 <Form.Label>Text</Form.Label>
-                <Form.Control as="textarea" value={props.entity?.content}/>
+                <Form.Control className="textArea" as="textarea" rows="6" value={props.entity?.content}/>
             </Form.Group>
         </>
     )

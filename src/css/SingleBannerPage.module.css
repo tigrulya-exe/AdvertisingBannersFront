@@ -12,5 +12,8 @@
 }
 
 .textContainer {
+    overflow-y: auto;
+    height: 50vh;
     margin-top: 5vh;
+    background: rgba(239, 244, 255, 0.79);
 }

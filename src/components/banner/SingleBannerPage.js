@@ -4,6 +4,7 @@ import wrapWithAlert from "../core/AlertWrappedComponent";
 import {useEffect, useState} from "react";
 import {categoryApi} from "../../api/CategoryApi";
 import {bannerApi} from "../../api/BannerApi";
+import {getError} from "../../util/util";
 
 function UnwrappedSingleBannerPage(props) {
     const [categoryReqNames, setCategoryReqNames] = useState();
@@ -13,11 +14,8 @@ function UnwrappedSingleBannerPage(props) {
     useEffect(() => {
         categoryApi.getRequestNames()
             .then(result => {
-                if (result.status === 204) {
-                    props.onError(result.data.content)
-                    return
-                }
                 setCategoryReqNames(result.data)
+                setCurrentReqName((result.data.length > 0) && result.data[0])
             })
             .catch(err => {
                 props.onError(err.response?.data?.message)
@@ -26,14 +24,22 @@ function UnwrappedSingleBannerPage(props) {
 
     const getBanner = () => {
         bannerApi.getByCategory(currentReqName)
-            .then(result => setBannerText(result.data.content))
+            .then(result => {
+                if (result.status === 204) {
+                    props.onError(`No more banners in category '${currentReqName}'`)
+                    setBannerText("")
+                    return
+                }
+                setBannerText(result.data.content)
+            })
             .catch(err => {
-                props.onError(err.response?.data?.message)
+                props.onError(getError(err))
             })
     }
 
     return (
         <div className={styles.container}>
+            <Jumbotron className={styles.textContainer}>{bannerText}</Jumbotron>
             <Row className={styles.form}>
                 <Col sm={10}>
                     <Form.Group controlId="categoryId">
@@ -57,7 +63,6 @@ function UnwrappedSingleBannerPage(props) {
                     </Button>
                 </Col>
             </Row>
-            <Jumbotron className={styles.textContainer}>{bannerText}</Jumbotron>
         </div>
     )
 }

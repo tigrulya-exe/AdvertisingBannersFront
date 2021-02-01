@@ -2,7 +2,7 @@ import styles from "../../css/EntityPage.module.css"
 import SearchSidebar from "./SearchSidebar";
 import EntityForm, {Action} from "./EntityForm";
 import {useState} from "react";
-import {flushFields, getErr} from "../../util/util";
+import {flushFields, getError} from "../../util/util";
 import wrapWithAlert from "./AlertWrappedComponent";
 
 function UnwrappedEntityPage(props) {
@@ -17,7 +17,7 @@ function UnwrappedEntityPage(props) {
                 setAction(Action.UPDATE)
             })
             .catch(err => {
-                props.onError(getErr(err))
+                props.onError(getError(err))
             })
     }
 

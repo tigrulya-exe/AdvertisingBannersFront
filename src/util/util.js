@@ -8,7 +8,7 @@ export const useIsMount = () => {
     return isMountRef.current;
 };
 
-export const getErr = (err) => err.response?.data?.message ?? "Network error";
+export const getError = (err) => err.response?.data?.message ?? "Network error";
 
 export const flushFields = (obj) => {
     if (!obj){

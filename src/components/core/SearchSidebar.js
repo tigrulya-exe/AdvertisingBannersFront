@@ -3,7 +3,7 @@ import {Button, Form} from 'react-bootstrap';
 import {useEffect, useState} from "react";
 import SearchListElement from "./SearchListElement";
 import CrudApi from "../../api/CrudApi";
-import {getErr} from "../../util/util";
+import {getError} from "../../util/util";
 
 export default function SearchSidebar(props) {
     const [searchResults, setSearchResults] = useState([]);
@@ -29,7 +29,7 @@ export default function SearchSidebar(props) {
                 setSearchResults(res.data)
             })
             .catch(err =>
-                props.onError(getErr(err))
+                props.onError(getError(err))
             )
     }, [template, props.refresh])
 
