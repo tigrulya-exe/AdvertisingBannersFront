@@ -17,8 +17,9 @@ export default function BannerForm(props) {
             <Form.Group controlId="categoryId">
                 <Form.Label>Category</Form.Label>
                 <Form.Control as="select" value={props.entity?.categoryId}>
+                    <option value="" selected disabled>Choose category</option>
                     {
-                        categories?.map(c => <option value={c.id}>{c.name}</option>)
+                        categories?.map(c => <option key={c.id} value={c.id}>{c.name}</option>)
                     }
                 </Form.Control>
             </Form.Group>

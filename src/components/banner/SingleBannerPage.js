@@ -16,10 +16,9 @@ function UnwrappedSingleBannerPage(props) {
         categoryApi.getRequestNames()
             .then(result => {
                 setCategoryReqNames(result.data)
-                setCurrentReqName((result.data.length > 0) && result.data[0])
             })
             .catch(err => {
-                props.onError(err.response?.data?.message)
+                props.onError(getError(err))
             })
     }, []);
 
@@ -34,6 +33,7 @@ function UnwrappedSingleBannerPage(props) {
                 setBannerText(result.data.content)
             })
             .catch(err => {
+                console.log(err.response?.data?.error)
                 props.onError(getError(err))
             })
     }
@@ -46,9 +46,10 @@ function UnwrappedSingleBannerPage(props) {
                     <Form.Group controlId="categoryId">
                         <Form.Label>Category</Form.Label>
                         <Form.Control as="select" onChange={e => setCurrentReqName(e.target.value)}>
+                            <option value="" disabled selected>Choose category</option>
                             {
                                 categoryReqNames?.map(
-                                    c => <option value={c}>{c}</option>
+                                    c => <option key={c} value={c}>{c}</option>
                                 )
                             }
                         </Form.Control>

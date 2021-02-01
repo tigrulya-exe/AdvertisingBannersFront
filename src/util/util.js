@@ -11,13 +11,13 @@ export const useIsMount = () => {
 export const getError = (err) => err.response?.data?.message ?? "Network error";
 
 export const flushFields = (obj) => {
-    if (!obj){
+    if (!obj) {
         return null
     }
 
     const newObj = {};
     Object.getOwnPropertyNames(obj).forEach(v => {
-        if (v !== "id"){
+        if (v !== "id") {
             newObj[v] = ""
         }
     });
