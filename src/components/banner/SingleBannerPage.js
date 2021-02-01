@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styles from "../../css/SingleBannerPage.module.css"
 import {Button, Col, Form, Jumbotron, Row} from "react-bootstrap";
 import wrapWithAlert from "../core/AlertWrappedComponent";

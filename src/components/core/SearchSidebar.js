@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styles from "../../css/SearchSidebar.module.css"
 import {Button, Form} from 'react-bootstrap';
 import {useEffect, useState} from "react";
