@@ -32,5 +32,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: advertising-banner-front
+          repository: tigrulya/advertising-banner-front
           tag_with_ref: true
