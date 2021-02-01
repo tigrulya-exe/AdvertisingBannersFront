@@ -1,12 +1,12 @@
 import styles from "../../css/EntityForm.module.css"
 import {Button, Form} from 'react-bootstrap';
+import {getErr} from "../../util/util";
 
 export default function EntityForm(props) {
     const handlePromise = (promise, message) => {
         promise.then(res => props.onSuccess(message))
             .catch(err => {
-                console.log(err.response)
-                props.onError(err.response?.data?.message)
+                props.onError(getErr(err))
             })
     };
 
@@ -21,7 +21,7 @@ export default function EntityForm(props) {
     );
 
     const deleteEntity = () => handlePromise(
-        props.api.delete(props.entity.id),
+        props.api.delete(props.entity?.id),
         "Deleted"
     );
 

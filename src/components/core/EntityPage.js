@@ -2,7 +2,7 @@ import styles from "../../css/EntityPage.module.css"
 import SearchSidebar from "./SearchSidebar";
 import EntityForm, {Action} from "./EntityForm";
 import {useState} from "react";
-import {flushFields} from "../../util/util";
+import {flushFields, getErr} from "../../util/util";
 import wrapWithAlert from "./AlertWrappedComponent";
 
 function UnwrappedEntityPage(props) {
@@ -16,7 +16,9 @@ function UnwrappedEntityPage(props) {
                 setEntity(result.data)
                 setAction(Action.UPDATE)
             })
-            .catch(err => alert(err))
+            .catch(err => {
+                props.onError(getErr(err))
+            })
     }
 
     const mergeEntity = newEntity => {
