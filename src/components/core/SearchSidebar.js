@@ -13,6 +13,7 @@ export default function SearchSidebar(props) {
     const mapSearchResults = () => searchResults.map(
         r => (
             <SearchListElement
+                key={r.id}
                 id={r.id}
                 title={r.name}
                 onClick={() => props.onEntityClick && props.onEntityClick(r.id)}

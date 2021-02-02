@@ -12,8 +12,14 @@ export default function BannerForm(props) {
 
     return (
         <>
-            <FormField controlId="name" value={props.entity?.name} label="Name"/>
-            <FormField controlId="price" value={props.entity?.price} label="Price"/>
+            <FormField controlId="name"
+                       value={props.entity?.name}
+                       label="Name"
+                       text="Max length: 255 chars"/>
+            <FormField controlId="price"
+                       value={props.entity?.price}
+                       label="Price"
+                       text="Max significant digits: 8. Max digits after decimal point: 2."/>
             <Form.Group controlId="categoryId">
                 <Form.Label>Category</Form.Label>
                 <Form.Control as="select" value={props.entity?.categoryId}>
@@ -25,7 +31,10 @@ export default function BannerForm(props) {
             </Form.Group>
             <Form.Group controlId="content">
                 <Form.Label>Text</Form.Label>
-                <Form.Control className="textArea" as="textarea" rows="6" value={props.entity?.content}/>
+                <Form.Control className="textArea"
+                              as="textarea"
+                              rows="6"
+                              value={props.entity?.content}/>
             </Form.Group>
         </>
     )
