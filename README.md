@@ -1,5 +1,5 @@
 # ABS - Advertising banners service 
-
+[Instructions to run service](https://github.com/tigrulya-exe/AdvertisingBanners/blob/master/README.md)
 ## Available Scripts
 
 In the project directory, you can run:
